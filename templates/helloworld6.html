@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>{{ time|date:"Y-m-d"  }}</p>
+<p>{{ views_str|safe }}</p>
+
+{% if num > 60 and num <= 90 %}
+合格
+{% elif num < 50 %}
+<p>不及格</p>
+{% else %}
+一边玩去～
+{% endif %}
+
+<hr>
+{% for views in views_list %}
+{{ views }}
+{% endfor %}
+<br>
+{% for views in views_list reversed %}
+{{ views }}
+{% endfor %}
+<hr>
+
+{% for i,j in views_dict.items %}
+key is = {{ i }} and value is = {{ j }} <br>
+{% endfor %}
+
+
+</body>
+</html>
