@@ -19,6 +19,11 @@ from django.urls import path
 from ai_py import views, orm_test
 
 urlpatterns = [
+    # 地区编码
+    path('ocr1/', orm_test.insert),
+    path('ocr2/', orm_test.test_save),
+    path('ocr3/', orm_test.m3),
+
     path('admin/', admin.site.urls),
     path('hello/', views.hello),
     path('hello2/', views.hello2),
