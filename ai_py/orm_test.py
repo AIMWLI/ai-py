@@ -1,3 +1,4 @@
+import json
 from datetime import time
 
 from bs4 import BeautifulSoup
@@ -6,7 +7,7 @@ from django.db.models import Avg, Count, Sum, Q, F, Min, Max
 from django.http import HttpResponse
 
 from ai_py import models
-from ai_py.models import Test, Contact, Student, Teacher, Course
+from ai_py.models import Test, Contact, Student, Teacher, Course, Score
 
 
 def test(request):
@@ -92,23 +93,51 @@ def sql_test(request):
     '''
     查询各科成绩的最高和最低分，以如下形式显示：课程ID，课程名称，最高分，最低分；
     '''
-    courses = Course.objects.annotate(min=Min("score__number"), max=Max("score__number")).values("id", 'name', 'min','max')
+    courses = Course.objects.annotate(min=Min("score__number"), max=Max("score__number")).values("id", 'name', 'min', 'max')
     for course in courses:
         print(course)
-    if rows != None:
-        return HttpResponse(courses)
+    # if rows != None:
+    #     return HttpResponse(courses)
     '''
     查询没门课程的平均成绩，按照平均成绩进行排序；
-
+    '''
+    courses = Course.objects.annotate(avg=Avg("score__number")).order_by('avg').values('id', 'name', 'avg')
+    for course in courses:
+        print(course)
+    # if rows != None:
+    #     return HttpResponse(courses)
+    '''
     统计总共有多少女生，多少男生；
-
+    '''
+    rows = Student.objects.aggregate(male_num=Count("gender", filter=Q(gender=1)),
+                                     female_num=Count("gender", filter=Q(gender=2)))
+    print(rows)
+    # json_object = json.dumps(rows, indent=4)
+    # return HttpResponse(json_object)
+    '''
     将“黄老师”的每一门课程都在原来的基础之上加5分；
-
+    '''
+    rows = Score.objects.filter(course__teacher__name='hel').update(number=F("number") + 5)
+    print(rows)
+    '''
     查询两门以上不及格的同学的id、姓名、以及不及格课程数；
-
+    '''
+    students = Student.objects.annotate(bad_count=Count("score__number", filter=Q(score__number__lt=60))).filter(
+        bad_count__gte=2).values('id', 'name', 'bad_count')
+    for student in students:
+        print(student)
+    # if rows != None:
+    #     return HttpResponse(students)
+    '''
     查询每门课的选课人数；
     '''
+    courses = Course.objects.annotate(student_nums=Count("score__student")).values('id', 'name', 'student_nums')
+    for course in courses:
+        print(course)
+    if rows is not None:
+        return HttpResponse(courses)
     return HttpResponse(rows)
+
 
 
 
