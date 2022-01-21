@@ -33,4 +33,5 @@ urlpatterns = [
     path('hello6/', views.hello6),
     path('insert/', orm_test.test),
     path('mycal/', views.mycal),
+    path('sql/', orm_test.sql_test),
 ]
