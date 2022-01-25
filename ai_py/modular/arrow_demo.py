@@ -1,5 +1,9 @@
 import arrow
 
+# 格式化输出
+a = arrow.now()
+print(a.format('YYYY-MM-DD HH:mm:ss'))
+
 # 获取世界标准时间
 utcnow = arrow.utcnow()
 print(utcnow)  # 2021-09-19T02:56:00.435537+00:00
@@ -51,3 +55,16 @@ print(a.shift(weekday=6))  # 2021-09-19T17:31:21.434495+08:00
 
 # 时间替换
 replace = arrow.now().replace(hour=9)
+
+# 人性化输出
+present = arrow.now()
+past = present.shift(hours=-1)
+print(past.humanize())  # an hour ago
+
+present = arrow.now()
+past = present.shift(hours=-1)
+print(past.humanize(present, locale='zh'))
+
+present2 = arrow.now()
+past2 = present2.shift(days=-9)
+print(past2.humanize(present2, locale='zh'))
