@@ -1,5 +1,3 @@
-import time
-
 import arrow
 
 # 获取世界标准时间
@@ -53,4 +51,3 @@ print(a.shift(weekday=6))  # 2021-09-19T17:31:21.434495+08:00
 
 # 时间替换
 replace = arrow.now().replace(hour=9)
-

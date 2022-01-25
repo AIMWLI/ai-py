@@ -21,7 +21,6 @@ data = [
     ('Swift', 74),
     ('Ruby', 72)
 ]
-print({datum: datum for datum in data})
 
 # 创建实例对象
 c = WordCloud()
