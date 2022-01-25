@@ -21,6 +21,8 @@ data = [
     ('Swift', 74),
     ('Ruby', 72)
 ]
+print({datum: datum for datum in data})
+
 # 创建实例对象
 c = WordCloud()
 # c.add(series_name="", data_pair=data)
@@ -37,6 +39,7 @@ name = [
     'Chick Fil A', 'Planet Fitness', 'Pitch Perfect', 'Express', 'Home', 'Johnny Depp',
     'Lena Dunham', 'Lewis Hamilton', 'KXAN', 'Mary Ellen Mark', 'Farrah Abraham',
     'Rita Ora', 'Serena Williams', 'NCAA baseball tournament', 'Point Break']
+
 value = [
     10000, 6181, 4386, 4055, 2467, 2244, 1898, 1484, 1112,
     965, 847, 582, 555, 550, 462, 366, 360, 282, 273, 265]
