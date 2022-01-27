@@ -1,3 +1,5 @@
+# 记录学习的技能和遇到的问题
+<br>
 # mysql-client常见问题
 ## debug
 ```PYTHONUNBUFFERED=1;DJANGO_SETTINGS_MODULE=djangoProject.settings```
