@@ -1,16 +1,3 @@
-
-**[记录学习的技能和遇到的问题](https://songjin.info)** 
-</br>
-
-# mysql-client常见问题
-## debug
-```PYTHONUNBUFFERED=1;DJANGO_SETTINGS_MODULE=djangoProject.settings```
-
-## 找不到_mysql
-I was facing the same problem on my MacOS (Big Sur) and I fixed it by doing this 
-```cp -r /usr/local/mysql/lib/* /usr/local/lib/```
-
-## 初始化表
-python manage.py makemigrations [app_name]
-<br>
-python manage.py migrate
+2022-05-01T12:41:00+08:00
+随机数:60899
+提交次数:1
